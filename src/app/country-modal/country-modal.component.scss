@@ -1,0 +1,39 @@
+#countryModalMain {
+  .modal-header {
+    border-bottom: none;
+
+    .modal-title {
+      font-weight: bold;
+    }
+
+    .btn-close {
+      margin: 0;
+    }
+  }
+
+  .modal-body {
+    padding-top: 0;
+
+    img {
+      height: 9rem;
+      border-radius: 5px;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+
+      & > div {
+        display: flex;
+      }
+
+      .label {
+        font-weight: bold;
+        width: 30%;
+        flex-shrink: 0;
+      }
+    }
+  }
+}

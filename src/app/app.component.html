@@ -42,8 +42,8 @@
     <ng-template #countryList>
       <div class="row row-cols-2 row-cols-md-{{ countriesPerRow }} g-3">
         <div class="col countryList" *ngFor="let country of displayedCountries">
-          <div class="card">
-            <img [src]="country.flags.svg" class="card-img-top" alt="" />
+          <div class="card" (click)="openCountryModal(country)">
+            <img [src]="country.flags.svg" class="card-img-top shadow" alt="" />
             <div class="card-body">
               <h5 class="card-title">{{ country.name.common }}</h5>
               <p class="card-text">{{ country.region }}</p>
@@ -53,7 +53,11 @@
       </div>
 
       <div class="moreContainer">
-        <button class="btn btn-primary" (click)="displayMoreCountries()">
+        <button
+          class="btn btn-primary"
+          (click)="displayMoreCountries()"
+          [disabled]="allCountriesList?.length === displayedCountries?.length"
+        >
           MORE
         </button>
       </div>
@@ -73,6 +77,7 @@
           type="email"
           class="form-control"
           [(ngModel)]="subscriptionEmail"
+          placeholder="Enter email"
         />
         <button class="btn btn-primary" [disabled]="!subscriptionEmail">
           SUBSCRIBE

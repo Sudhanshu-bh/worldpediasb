@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from './shared/services/api/api.service';
 import { NgForm } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CountryModalComponent } from './country-modal/country-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -14,18 +16,19 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   loading = true;
   allCountriesList?: any[];
-  displayedCountries?: any[];
+  displayedCountries?: any[] = [];
   numOfCountriesToShow!: number;
   searchText = '';
   subscriptionEmail = '';
 
   @ViewChild('searchForm') searchForm!: NgForm;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private ngbModal: NgbModal) {}
 
   ngOnInit(): void {
     this.checkSmallerDevice();
     this.getAllCountries();
+    this.setNumOfCountriesToShow();
   }
 
   ngAfterViewInit(): void {
@@ -81,15 +84,16 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     this.apiService.search(formValue.searchText).subscribe({
       next: (res) => {
+        this.allCountriesList = res;
         this.displayedCountries = this.getNCountriesSorted(
-          res,
+          this.allCountriesList,
           this.numOfCountriesToShow
         );
 
         this.loading = false;
       },
       error: (err) => {
-        console.log(err);
+        console.error(err);
         this.showAllCountries();
       },
     });
@@ -106,5 +110,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   showAllCountries() {
     this.searchForm.resetForm();
     this.getAllCountries();
+  }
+
+  openCountryModal(countryData: any) {
+    const modalRef = this.ngbModal.open(CountryModalComponent, {
+      centered: true,
+    });
+    modalRef.componentInstance.countryData = countryData;
   }
 }

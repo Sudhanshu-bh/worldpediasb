@@ -1,0 +1,41 @@
+<div id="countryModalMain">
+  <div class="modal-header">
+    <h4 class="modal-title">{{ countryData.name.common }}</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.close()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <img [src]="countryData.flags.svg" class="logo shadow" alt="" />
+
+    <div class="info">
+      <div *ngIf="country.capital">
+        <span class="label">Capital</span>
+        <span class="val">{{ country.capital }}</span>
+      </div>
+      <div *ngIf="country.continent">
+        <span class="label">Continent</span>
+        <span class="val">{{ country.continent }}</span>
+      </div>
+      <div *ngIf="country.currency">
+        <span class="label">Currency</span>
+        <span class="val">{{ country.currency }}</span>
+      </div>
+      <div *ngIf="country.languages">
+        <span class="label">Languages</span>
+        <span class="val">{{ country.languages }}</span>
+      </div>
+      <div *ngIf="country.population">
+        <span class="label">Population</span>
+        <span class="val">{{ country.population }}</span>
+      </div>
+      <div *ngIf="country.timezones">
+        <span class="label">Timezone</span>
+        <span class="val">{{ country.timezones }}</span>
+      </div>
+    </div>
+  </div>
+</div>
