@@ -1,4 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";
+
+@import "./variables";
+
+* {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.btn {
+  @media screen and (min-width: $max-width-mob) {
+    padding: 0.5rem 1.7rem;
+  }
+  padding-left: 0.85rem;
+  padding-right: 0.85rem;
+}

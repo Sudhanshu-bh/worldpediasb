@@ -1,6 +1,17 @@
+@import "./../variables";
+
+$side-spacing-lg: 10rem;
+$side-spacing-xs: 1rem;
+
 #main {
   & > * {
-    padding: 4rem 10rem 4rem;
+    padding-right: $side-spacing-lg;
+    padding-left: $side-spacing-lg;
+
+    @media screen and (max-width: $max-width-mob) {
+      padding-right: $side-spacing-xs;
+      padding-left: $side-spacing-xs;
+    }
   }
 
   .header {
@@ -9,16 +20,31 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-top: 4rem;
+
+    @media screen and (max-width: $max-width-mob) {
+      padding-top: 1.5rem;
+    }
 
     .headerUpper {
       display: flex;
       justify-content: space-between;
       align-items: center;
 
+      @media screen and (max-width: $max-width-mob) {
+        flex-direction: column;
+        align-items: start;
+        gap: 1rem;
+      }
+
       .description {
         display: flex;
         flex-direction: column;
         align-items: end;
+
+        @media screen and (max-width: $max-width-mob) {
+          align-items: start;
+        }
       }
     }
 
@@ -27,10 +53,79 @@
       background: white;
       padding: 1.5rem;
       border-radius: 5px;
+      margin-top: 4rem;
+
+      @media screen and (max-width: $max-width-mob) {
+        margin-top: 2rem;
+      }
 
       input {
         flex: 1;
       }
+    }
+  }
+
+  .content {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+
+    @media screen and (max-width: $max-width-mob) {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+  }
+
+  .footer {
+    color: white;
+    background: #333333;
+    padding-top: 3.8rem;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3rem;
+
+    @media screen and (max-width: $max-width-mob) {
+      padding-top: 1.7rem;
+      padding-bottom: 1.3rem;
+      gap: 1.5rem;
+    }
+
+    .footerUpper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @media screen and (max-width: $max-width-mob) {
+        flex-direction: column;
+        align-items: start;
+        gap: 1.5rem;
+      }
+
+      .subscribeBox {
+        width: inherit;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        gap: 0.5rem;
+
+        @media screen and (max-width: $max-width-mob) {
+          flex-direction: row;
+          gap: 1rem;
+          flex: 1;
+          width: 100%;
+        }
+
+        input {
+          width: 17rem;
+          flex: 1;
+        }
+      }
+    }
+
+    .footerLower {
+      display: flex;
+      justify-content: space-between;
     }
   }
 }
