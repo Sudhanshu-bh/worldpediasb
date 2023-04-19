@@ -26,6 +26,10 @@ $side-spacing-xs: 1rem;
     justify-content: space-between;
     padding-top: 4rem;
 
+    position: sticky;
+    top: 0;
+    z-index: 5;
+
     @media screen and (max-width: $max-width-mob) {
       padding-top: 1.5rem;
     }
