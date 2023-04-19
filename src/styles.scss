@@ -16,3 +16,22 @@
   padding-left: 0.85rem;
   padding-right: 0.85rem;
 }
+
+.spinnerContainer {
+  background-color: rgba(207 229 236 / 0.5);
+
+  height: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .spinner-border {
+    height: 4rem;
+    width: 4rem;
+
+    @media screen and (max-width: $max-width-mob) {
+      height: 3rem;
+      width: 3rem;
+    }
+  }
+}

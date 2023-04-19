@@ -1,26 +1,82 @@
 <div id="main">
   <div class="header">
     <div class="headerUpper">
-      <img src="../assets/images/logo.png" alt="" class="logo" />
+      <img
+        src="../assets/images/logo.png"
+        alt=""
+        class="logo"
+        (click)="showAllCountries()"
+      />
       <div class="description">
         <span>Best list of all countries with their flags</span>
         <span>on the whole internet !!!</span>
       </div>
     </div>
     <div class="headerSearch shadow" id="headerSearch">
-      <input type="text" class="form-control me-3" />
-      <button class="btn btn-primary">SEARCH</button>
+      <form (ngSubmit)="handleSearch(searchForm.value)" #searchForm="ngForm">
+        <input
+          type="text"
+          class="form-control me-3"
+          [(ngModel)]="searchText"
+          name="searchText"
+          required
+        />
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="searchForm.invalid || loading"
+        >
+          SEARCH
+        </button>
+      </form>
     </div>
   </div>
 
-  <div class="content"></div>
+  <div class="content">
+    <div class="spinnerContainer" *ngIf="loading; else countryList">
+      <div class="spinner-border text-danger" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <ng-template #countryList>
+      <div class="row row-cols-2 row-cols-md-{{ countriesPerRow }} g-3">
+        <div class="col countryList" *ngFor="let country of displayedCountries">
+          <div class="card">
+            <img [src]="country.flags.svg" class="card-img-top" alt="" />
+            <div class="card-body">
+              <h5 class="card-title">{{ country.name.common }}</h5>
+              <p class="card-text">{{ country.region }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="moreContainer">
+        <button class="btn btn-primary" (click)="displayMoreCountries()">
+          MORE
+        </button>
+      </div>
+    </ng-template>
+  </div>
 
   <div class="footer">
     <div class="footerUpper">
-      <img src="../assets/images/logo.png" alt="" class="logo" />
+      <img
+        src="../assets/images/logo.png"
+        alt=""
+        class="logo"
+        (click)="showAllCountries()"
+      />
       <div class="subscribeBox">
-        <input type="text" class="form-control" />
-        <button class="btn btn-primary">SUBSCRIBE</button>
+        <input
+          type="email"
+          class="form-control"
+          [(ngModel)]="subscriptionEmail"
+        />
+        <button class="btn btn-primary" [disabled]="!subscriptionEmail">
+          SUBSCRIBE
+        </button>
       </div>
     </div>
     <div class="footerLower">

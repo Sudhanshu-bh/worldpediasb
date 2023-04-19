@@ -1,6 +1,6 @@
 @import "./../variables";
 
-$side-spacing-lg: 10rem;
+$side-spacing-lg: 15rem;
 $side-spacing-xs: 1rem;
 
 #main {
@@ -12,6 +12,10 @@ $side-spacing-xs: 1rem;
       padding-right: $side-spacing-xs;
       padding-left: $side-spacing-xs;
     }
+  }
+
+  img.logo {
+    cursor: pointer;
   }
 
   .header {
@@ -59,19 +63,53 @@ $side-spacing-xs: 1rem;
         margin-top: 2rem;
       }
 
-      input {
+      form {
+        display: flex;
         flex: 1;
+
+        input {
+          flex: 1;
+        }
       }
     }
   }
 
   .content {
-    padding-top: 4rem;
+    padding-top: 8rem;
     padding-bottom: 4rem;
 
     @media screen and (max-width: $max-width-mob) {
-      padding-top: 2rem;
-      padding-bottom: 2rem;
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+    }
+
+    .card {
+      img {
+        height: 8rem;
+        width: inherit;
+        margin: 1rem 1rem 0 1rem;
+        border-radius: 5px;
+      }
+    }
+
+    .moreContainer {
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+
+      .btn {
+        padding: 0.8rem 4rem;
+      }
+
+      @media screen and (max-width: $max-width-mob) {
+        margin-top: 2rem;
+
+        .btn {
+          flex: 1;
+          padding-top: 0.7rem;
+          padding-bottom: 0.7rem;
+        }
+      }
     }
   }
 
@@ -126,6 +164,15 @@ $side-spacing-xs: 1rem;
     .footerLower {
       display: flex;
       justify-content: space-between;
+
+      @media screen and (max-width: $max-width-mob) {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        border-top: 1px solid grey;
+        margin-top: 0.5rem;
+        padding-top: 1.5rem;
+      }
     }
   }
 }
