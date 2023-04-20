@@ -20,6 +20,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   numOfCountriesToShow!: number;
   searchText = '';
   subscriptionEmail = '';
+  noResultSearchText = '';
 
   @ViewChild('searchForm') searchForm!: NgForm;
 
@@ -93,8 +94,10 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.loading = false;
       },
       error: (err) => {
-        console.error(err);
-        this.showAllCountries();
+        console.error('errr:: ', err);
+        this.displayedCountries = [];
+        this.noResultSearchText = this.searchText;
+        this.loading = false;
       },
     });
   }

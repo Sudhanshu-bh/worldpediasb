@@ -40,26 +40,43 @@
     </div>
 
     <ng-template #countryList>
-      <div class="row row-cols-2 row-cols-md-{{ countriesPerRow }} g-3">
-        <div class="col countryList" *ngFor="let country of displayedCountries">
-          <div class="card" (click)="openCountryModal(country)">
-            <img [src]="country.flags.svg" class="card-img-top shadow" alt="" />
-            <div class="card-body">
-              <h5 class="card-title">{{ country.name.common }}</h5>
-              <p class="card-text">{{ country.region }}</p>
+      <ng-container *ngIf="displayedCountries?.length; else noSearchResult">
+        <div class="row row-cols-2 row-cols-md-{{ countriesPerRow }} g-3">
+          <div
+            class="col countryList"
+            *ngFor="let country of displayedCountries"
+          >
+            <div class="card" (click)="openCountryModal(country)">
+              <img
+                [src]="country.flags.svg"
+                class="card-img-top shadow"
+                alt=""
+              />
+              <div class="card-body">
+                <h5 class="card-title">{{ country.name.common }}</h5>
+                <p class="card-text">{{ country.region }}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="moreContainer">
-        <button
-          class="btn btn-primary"
-          (click)="displayMoreCountries()"
-          [disabled]="allCountriesList?.length === displayedCountries?.length"
-        >
-          MORE
-        </button>
+        <div class="moreContainer">
+          <button
+            class="btn btn-primary"
+            (click)="displayMoreCountries()"
+            [disabled]="allCountriesList?.length === displayedCountries?.length"
+          >
+            MORE
+          </button>
+        </div>
+      </ng-container>
+    </ng-template>
+
+    <ng-template #noSearchResult>
+      <div class="noContent">
+        <h1 class="display-6">
+          Umm 🧐, no search result found for '{{ noResultSearchText }}'!
+        </h1>
       </div>
     </ng-template>
   </div>
